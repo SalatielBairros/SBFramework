@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2011
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SBFramework.Base.Tests", "SBFramework.Base.Tests\SBFramework.Base.Tests.csproj", "{83720650-2093-4E87-82B3-38A3C564677F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SBFramework.Base", "SBFramework.Base\SBFramework.Base.csproj", "{C79C2305-8C79-42B0-99F3-69ECAF2DF24E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{655FEA5F-AF68-4682-BC14-B387FE46BFF2}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{83720650-2093-4E87-82B3-38A3C564677F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83720650-2093-4E87-82B3-38A3C564677F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83720650-2093-4E87-82B3-38A3C564677F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83720650-2093-4E87-82B3-38A3C564677F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C79C2305-8C79-42B0-99F3-69ECAF2DF24E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C79C2305-8C79-42B0-99F3-69ECAF2DF24E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C79C2305-8C79-42B0-99F3-69ECAF2DF24E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C79C2305-8C79-42B0-99F3-69ECAF2DF24E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1A65D350-33A6-497D-B4FD-F408E85C1CD5}
+	EndGlobalSection
+EndGlobal
