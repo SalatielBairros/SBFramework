@@ -15,9 +15,10 @@ namespace SBFramework.SqlBuilder
 
     }
 
-    public static SqlBuilderException NoWhereClauseDefined()
-    {
-      return new SqlBuilderException(Properties.Resources.WhereClausuleNotDefined);
-    }
+    public static SqlBuilderException NoWhereClauseDefined() 
+      => new SqlBuilderException(Properties.Resources.WhereClausuleNotDefined);
+
+    public static SqlBuilderException NoMapDefined() 
+      => new SqlBuilderException(Properties.Resources.NoMapDefined);
   }
 }

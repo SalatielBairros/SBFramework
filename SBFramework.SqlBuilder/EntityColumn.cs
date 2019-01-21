@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
+using SBFramework.SqlBuilder.Extensions;
 using SBFramework.SqlBuilder.Interfaces;
 
 namespace SBFramework.SqlBuilder
@@ -32,12 +33,7 @@ namespace SBFramework.SqlBuilder
 
       public IEntityColumnBuilder<TEntity> From(Expression<Func<TEntity>> propertyLambda)
       {
-        if (!(propertyLambda.Body is MemberExpression me))
-        {
-          throw new ArgumentException("You must pass a lambda of the form: '() => Class.Property' or '() => object.Property'");
-        }
-
-        _entityName = me.Member.Name;
+        _entityName = propertyLambda.PropertyName();
         return this;
       }
 

@@ -44,6 +44,7 @@
     <Compile Include="EntityColumn.cs" />
     <Compile Include="EntityMap.cs" />
     <Compile Include="Extensions\EntityColumnExtensions.cs" />
+    <Compile Include="Extensions\ExpressionExtension.cs" />
     <Compile Include="Interfaces\IEntityMap.cs" />
     <Compile Include="Interfaces\IQueryBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,6 +1,7 @@
 ﻿using SBFramework.Base.Text;
 using SBFramework.SqlBuilder.Interfaces;
 using System.Text;
+using SBFramework.SqlBuilder.Extensions;
 
 namespace SBFramework.SqlBuilder
 {
@@ -8,7 +9,8 @@ namespace SBFramework.SqlBuilder
   {
     private readonly StringBuilder _query = new StringBuilder();
     private readonly StringBuilder _whereClausule = new StringBuilder();
-    private bool _whereAll;
+    private bool _whereAll, _isMapped;
+    private IEntityMap _map = null;
 
     public string TableName { get; private set; }
     public string ParameterPrefix { get; set; } = "@";
@@ -57,7 +59,10 @@ namespace SBFramework.SqlBuilder
       ValidateWhereMethod();
 
       _query
-        .Append(" SELECT * FROM ")
+        .Append(" SELECT ")
+        .Append(
+          _isMapped ? _map.GetColumns().GetDbColumns().JoinByComma() : "*")
+        .Append(" FROM ")
         .Append(TableName)
         .Append(_whereClausule);
 
@@ -129,6 +134,17 @@ namespace SBFramework.SqlBuilder
     public IInitialQuery On(string tableName)
     {
       TableName = tableName;
+      return this;
+    }
+
+    public IInitialQuery On(IEntityMap map)
+    {
+      if (map == null) throw SqlBuilderException.NoWhereClauseDefined();
+
+      _isMapped = true;
+      TableName = map.TableName;
+      _map = map;
+
       return this;
     }
 

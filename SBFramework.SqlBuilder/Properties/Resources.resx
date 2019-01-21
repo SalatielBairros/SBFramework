@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="LambdaPropertyError" xml:space="preserve">
+    <value>You must pass a lambda of the form: '() =&gt; Class.Property' or '() =&gt; object.Property'</value>
+  </data>
+  <data name="NoMapDefined" xml:space="preserve">
+    <value>No mapper was defined or it is null.</value>
+  </data>
   <data name="WhereClausuleNotDefined" xml:space="preserve">
     <value>Where clausule was not defined.</value>
   </data>

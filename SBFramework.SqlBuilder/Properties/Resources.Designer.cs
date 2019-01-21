@@ -61,6 +61,24 @@ namespace SBFramework.SqlBuilder.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must pass a lambda of the form: &apos;() =&gt; Class.Property&apos; or &apos;() =&gt; object.Property&apos;.
+        /// </summary>
+        internal static string LambdaPropertyError {
+            get {
+                return ResourceManager.GetString("LambdaPropertyError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No mapper was defined or it is null..
+        /// </summary>
+        internal static string NoMapDefined {
+            get {
+                return ResourceManager.GetString("NoMapDefined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Where clausule was not defined..
         /// </summary>
         internal static string WhereClausuleNotDefined {

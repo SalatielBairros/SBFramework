@@ -16,17 +16,11 @@ namespace SBFramework.SqlBuilder
 
     public string TableName { get; protected set; }
 
-    public IList<IEntityColumn> GetColumns()
-    {
-      return Columns.ToList();
-    }
+    public IList<IEntityColumn> GetColumns() => Columns.ToList();
 
     public IList<IEntityColumn> GetKeys() => Columns.Where(x => x.IsKey).ToList();
 
-    public void Map(IEntityColumn column)
-    {
-      Columns.Add(column);
-    }
+    public void Map(IEntityColumn column) => Columns?.Add(column);
 
     public abstract void Configuration();
   }

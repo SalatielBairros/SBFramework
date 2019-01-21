@@ -3,6 +3,8 @@
   public interface IQueryBuilder
   {
     IInitialQuery On(string tableName);
+
+    IInitialQuery On(IEntityMap map);
   }
 
   public interface IQuery
