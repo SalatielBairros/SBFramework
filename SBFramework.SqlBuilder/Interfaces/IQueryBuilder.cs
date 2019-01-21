@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace SBFramework.SqlBuilder.Interfaces
 {
   public interface IQueryBuilder
@@ -22,14 +24,14 @@ namespace SBFramework.SqlBuilder.Interfaces
   {
     IQuery Insert(params string[] columns);
 
-    IQuery Insert(ISelectQuery selectQuery);
+    IQuery Insert(ISelectQuery selectQuery, params string[] columns);
   }
 
   public interface IWhereQuery : IQuery
   {
     IWhereableQuery All();
 
-    IWhereableQuery Where();
+    IWhereableQuery Where(string clausule);
   }
 
   public interface IDeleteQuery : IQuery
@@ -39,12 +41,14 @@ namespace SBFramework.SqlBuilder.Interfaces
 
   public interface IUpdateQuery : IQuery
   {
-    IQuery Update();
+    IQuery Update(params string[] columnsToUpdate);
   }
 
   public interface ISelectQuery : IQuery
   {
     IOrdenableQuery Select();
+
+    IOrdenableQuery Select(params string[] columnsToSelect);
   }
 
   public interface IWhereableQuery : IDeleteQuery, IUpdateQuery, ISelectQuery
@@ -54,6 +58,6 @@ namespace SBFramework.SqlBuilder.Interfaces
 
   public interface IOrdenableQuery : IQuery
   {
-    IQuery OrderBy();
+    IQuery OrderBy(string column);
   }
 }

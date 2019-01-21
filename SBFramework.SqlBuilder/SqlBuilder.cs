@@ -1,49 +1,43 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SBFramework.Base.Text;
+﻿using SBFramework.Base.Text;
 using SBFramework.SqlBuilder.Interfaces;
+using System.Text;
 
 namespace SBFramework.SqlBuilder
 {
-  public class QueryBuilder: IWhereableQuery, IOrdenableQuery, IInitialQuery, IQueryBuilder
+  public class QueryBuilder : IWhereableQuery, IOrdenableQuery, IInitialQuery, IQueryBuilder
   {
     private readonly StringBuilder _query = new StringBuilder();
     private readonly StringBuilder _whereClausule = new StringBuilder();
     private bool _whereAll;
 
     public string TableName { get; private set; }
+    public string ParameterPrefix { get; set; } = "@";
 
     public string GetQuery()
     {
-      string sql =_query.ToString();
+      string sql = _query.ToString();
       return string.IsNullOrWhiteSpace(sql) ? _whereClausule.ToString() : sql;
     }
 
-    public IQuery OrderBy()
+    public IQuery OrderBy(string column)
     {
       _query
-        .Append(" ORDER BY ");
+        .Append(" ORDER BY ")
+        .Append(column);
 
       return this;
     }
 
-    public IQuery Update()
+    public IQuery Update(params string[] columnsToUpdate)
     {
       ValidateWhereMethod();
 
       _query
-        .Append($"UPDATE {TableName} SET")
+        .Append($" UPDATE {TableName} SET ")
+        .Append(columnsToUpdate.ToSetClausule(ParameterPrefix))
         .Append(_whereClausule);
 
       return this;
-    }
-
-    private void ValidateWhereMethod()
-    {
-      if (!_whereAll && string.IsNullOrWhiteSpace(_whereClausule.ToString()))
-        throw SqlBuilderException.NoWhereClauseDefined();
     }
 
     public IQuery Delete()
@@ -64,6 +58,20 @@ namespace SBFramework.SqlBuilder
 
       _query
         .Append(" SELECT * FROM ")
+        .Append(TableName)
+        .Append(_whereClausule);
+
+      return this;
+    }
+
+    public IOrdenableQuery Select(params string[] columnsToSelect)
+    {
+      ValidateWhereMethod();
+
+      _query
+        .Append(" SELECT ")
+        .Append(columnsToSelect.JoinByComma())
+        .Append(" FROM ")
         .Append(TableName)
         .Append(_whereClausule);
 
@@ -104,12 +112,16 @@ namespace SBFramework.SqlBuilder
       return this;
     }
 
-    public IWhereableQuery Where()
+    public IWhereableQuery Where(string clausule)
     {
       ValidateWhereMethod();
 
+      if (!clausule.Trim().StartsWith("WHERE"))
+        _whereClausule
+          .Append(" WHERE ");
+
       _whereClausule
-        .Append(" WHERE ");
+        .Append(clausule);
 
       return this;
     }
@@ -118,6 +130,12 @@ namespace SBFramework.SqlBuilder
     {
       TableName = tableName;
       return this;
+    }
+
+    private void ValidateWhereMethod()
+    {
+      if (!_whereAll && string.IsNullOrWhiteSpace(_whereClausule.ToString()))
+        throw SqlBuilderException.NoWhereClauseDefined();
     }
   }
 }

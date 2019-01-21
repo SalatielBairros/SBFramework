@@ -12,10 +12,6 @@ namespace SBFramework.SqlBuilder.Tests
     [TestMethod]
     public void TestMethod1()
     {
-      queryBuilder
-        .On("table")
-        .Where()
-        .Select();
     }
   }
 }

@@ -23,5 +23,15 @@ namespace SBFramework.Base.Text
     public static string JoinByComma(this string[] @this) => string.Join(", ", @this);
 
     public static string AsParameters(this string[] @this) => string.Join(", @", @this);
+
+    public static string ToSetClausule(this string[] @this, string parameterPrefix)
+    {
+      for (int i = 0; i < @this.Length; i++)
+      {
+        @this[i] = $" {@this[i]} = {parameterPrefix}{@this[i]} ";
+      }
+
+      return @this.JoinByComma();
+    }
   }
 }
