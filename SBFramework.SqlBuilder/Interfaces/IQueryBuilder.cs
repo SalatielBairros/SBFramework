@@ -1,7 +1,4 @@
-﻿
-using System.Collections.Generic;
-
-namespace SBFramework.SqlBuilder.Interfaces
+﻿namespace SBFramework.SqlBuilder.Interfaces
 {
   public interface IQueryBuilder
   {

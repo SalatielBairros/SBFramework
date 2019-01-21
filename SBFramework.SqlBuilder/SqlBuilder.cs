@@ -16,7 +16,7 @@ namespace SBFramework.SqlBuilder
     public string GetQuery()
     {
       string sql = _query.ToString();
-      return string.IsNullOrWhiteSpace(sql) ? _whereClausule.ToString() : sql;
+      return (string.IsNullOrWhiteSpace(sql) ? _whereClausule.ToString() : sql).ToUpper().Trim();
     }
 
     public IQuery OrderBy(string column)
